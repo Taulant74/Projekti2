@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="contactus.css">
+</head>
+<body class="light-mode">
+    <header>
+        <div class="d1">
+            <div class="d2">
+                <div class="menu-item">
+                    <label for="Divisions"><a href="Main.HTML" target="_blank"
+                            style="text-decoration: none; color: inherit;">Back</a></label>
+            
+                </div>
+               
+            </div>
+
+            <div class="logo" onclick="toggleDarkMode()">
+                <img src="ufc.jpg" alt="UFC Logo">
+            </div>
+
+            <div class="menu-item1">
+                <label for="about"><a href="AboutUs.html" target="_blank"
+                        style="text-decoration: none; color: inherit;">About Us</a></label>
+                <label for="contact"><a href="ContactUs.html" target="_blank"
+                        style="text-decoration: none; color: inherit;">Contact Us</a></label>
+            </div>
+        </div>
+    </header>
+    <div></div>
+    </div>
+    </div>
+
+    <section>
+        <form id="contactForm" onsubmit="return validateForm()">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Your Name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Your Email" required>
+
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="4" placeholder="Your Message" required></textarea>
+
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+
+    <script>
+        function validateForm() {
+            var name = document.getElementById("name").value;
+            var email = document.getElementById("email").value;
+            var message = document.getElementById("message").value;
+
+            if (name === "" || email === "" || message === "") {
+                alert("Please fill out all required fields.");
+                return false;
+            }
+        }
+    </script>
+</body>
+</html>

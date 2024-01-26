@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+ <h1>hello</h1>
+
+ <div class="d2">
+  <img src="diaz.jpg" alt="ufc"  class="img" id="gg">
+ 
+ <button onclick="change()" >
+ next
+ </button>
+
+
+     
+  </div>
+
+
+  <style>
+.d2{
+ text-align: center; 
+
+}
+
+
+    .img{
+
+    width: 550px;
+    height: 500px;
+    object-fit:cover;
+    border-width: 5px;
+    border-style: double;
+    } 
+
+
+  </style>
+   <script>
+
+  
+function change(){
+ let n =0;  
+  var img = document.getElementById('gg');
+ if(n==0) {
+  img.src = "gaetheje.jpg";
+  n++
+  return;
+ }else{
+ if(n==1) {
+  img.src = "dc.jpg";
+  n++
+ }
+}
+
+  }
+
+   </script>
+</head>
+<body>
+      
+</body>
+</html>

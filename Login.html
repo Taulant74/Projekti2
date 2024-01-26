@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Login/Register Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="form-container" onsubmit="return validateForm()">
+        <h2 class="teksti"><b>Login/Register</b></h2>
+        <form id="loginForm">
+            <input type="text" placeholder="Username" id="username" required>
+            <input type="password" placeholder="Password" id="password" required>
+            <button type="button" onclick="login()"><b>Kyquni</b></button>
+            <div id="loginErrorMessage" class="error-message"></div>
+        </form>
+        <p class="or"><b>or</b></p>
+        <form id="registerForm" style="display: none;" onsubmit="return submitRegistration()">
+            <input type="text" placeholder="Full Name" id="fullName" required>
+            <input type="email" placeholder="Email" id="email" required>
+            <input type="password" placeholder="Password" id="regPassword" required>
+            <select id="gender" required>
+                <option value="" disabled selected>Zgjedh gjininë</option>
+                <option value="male">Mashkull</option>
+                <option value="female">Femër</option>
+                <option value="other">Tjetër</option>
+            </select>
+            <input type="date" id="birthdate" required>
+            <button type="submit"><b>Regjistrohuni</b></button>
+            <!-- Change the type to "submit" -->
+            <div id="registerErrorMessage" class="error-message"></div>
+        </form>
+        <p id="toggleText"><b>Nuk ke një llogari?</b> <a href="#" onclick="toggleForm()"><b>Regjistrohu</b></a></p>
+    </div>
+
+    <script>
+        function toggleForm() {
+            var loginForm = document.getElementById('loginForm');
+            var registerForm = document.getElementById('registerForm');
+            var toggleText = document.getElementById('toggleText');
+
+            if (loginForm.style.display === 'none') {
+                loginForm.style.display = 'block';
+                registerForm.style.display = 'none';
+                toggleText.innerHTML = "Nuk ke një llogari? <a href='#' onclick='toggleForm()'>Regjistrohu</a>";
+            } else {
+                loginForm.style.display = 'none';
+                registerForm.style.display = 'block';
+                toggleText.innerHTML = "Tashmë ke një llogari? <a href='#' onclick='toggleForm()'>Kyquni</a>";
+            }
+        }
+
+        function login() {
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+            var loginErrorMessage = document.getElementById('loginErrorMessage');
+
+            if (!username || !password) {
+                loginErrorMessage.textContent = 'Ju lutem plotësoni të gjitha të dhënat.';
+                return;
+            }
+
+            if (!validatePassword(password)) {
+                loginErrorMessage.textContent = 'Passwordi duhet të përmbajë të paktën 8 karaktere, të filloj me shkronjë të madhe, dhe të përfshijë një karakter special.';
+                return;
+            }
+
+            window.location.href = 'Main.html';
+        }
+
+        function submitRegistration() {
+            var fullName = document.getElementById('fullName').value;
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('regPassword').value;
+            var gender = document.getElementById('gender').value;
+            var birthdate = document.getElementById('birthdate').value;
+            var registerErrorMessage = document.getElementById('registerErrorMessage');
+
+            if (!fullName || !email || !password || !gender || !birthdate) {
+                registerErrorMessage.textContent = 'Shtypni të gjitha të dhënat.';
+                return false;
+            }
+
+            var fullNameRegex = /^[a-zA-Z\s]+$/;
+            if (!fullNameRegex.test(fullName)) {
+                registerErrorMessage.textContent = 'Ju lutem vendosni një emër të vlefshëm.';
+                return false;
+            }
+
+            if (!validatePassword(password)) {
+                return false;
+            }
+
+            window.location.href = 'Main.html';
+            return false; 
+        }
+
+        function validatePassword(password) {
+            var passwordRegex = /^(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]).{8,}$/;
+            return passwordRegex.test(password);
+        }
+    </script>
+</body>
+
+</html>
